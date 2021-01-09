@@ -9,6 +9,8 @@ import re
 import random
 from torch.nn.utils.rnn import pad_sequence
 
+RAND_SEED = 42
+
 
 def clean_str(string, tolower=True):
     """
@@ -137,6 +139,7 @@ def extract_data(stances_data, bodies_data, test_size=0.2, min_num_occur=10):
         bodies_clean,
         test_size=test_size,
         stratify=stances_clean
+        random_state=RAND_SEED
     )
     
     vocab_dict, _, _ = create_vocabulary(headlines_train + bodies_train, min_num_occur=min_num_occur)
