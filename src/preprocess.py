@@ -135,10 +135,10 @@ def extract_data(stances_data, bodies_data, test_size=0.2, min_num_occur=10):
 
     headlines_train, headlines_dev, stances_train, stances_dev, bodies_train, bodies_dev = train_test_split(
         headlines_clean,
-        stances_clean,
+        stances,
         bodies_clean,
         test_size=test_size,
-        stratify=stances_clean,
+        stratify=stances,
         random_state=RAND_SEED
     )
     
