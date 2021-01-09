@@ -113,11 +113,11 @@ def data_to_num_tensor(vocab_dict, data):
 
 
 def preprocess_data(stances_data, bodies_data, with_stances=False):
-    headlines, stances, bodies, body_ids = join_data(stances_data, bodies_data, with_stances)
+    headlines, stances, bodies = join_data(stances_data, bodies_data, with_stances)
     headlines_clean = clean_data(headlines)
     bodies_clean = clean_data(bodies)
     
-    return headlines_clean, stances, bodies_clean, body_ids
+    return headlines_clean, stances, bodies_clean
 
 
 def transform_data_to_tensor(vocab_dict, headlines, stances, bodies):
@@ -131,14 +131,14 @@ def transform_data_to_tensor(vocab_dict, headlines, stances, bodies):
     
     
 def extract_data(stances_data, bodies_data, test_size=0.2, min_num_occur=10):
-    headlines_clean, stances, bodies_clean, _ = preprocess_data(stances_data, bodies_data, with_stances=True)
+    headlines_clean, stances, bodies_clean = preprocess_data(stances_data, bodies_data, with_stances=True)
 
     headlines_train, headlines_dev, stances_train, stances_dev, bodies_train, bodies_dev = train_test_split(
         headlines_clean,
         stances_clean,
         bodies_clean,
         test_size=test_size,
-        stratify=stances_clean
+        stratify=stances_clean,
         random_state=RAND_SEED
     )
     
